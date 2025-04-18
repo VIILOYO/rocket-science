@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Item extends Model
@@ -18,4 +19,13 @@ class Item extends Model
         'price',
         'amount',
     ];
+
+    protected $casts = [
+        'price' => 'float'
+    ];
+
+    public function options(): HasMany
+    {
+        return $this->hasMany(Option::class, 'item_id');
+    }
 }

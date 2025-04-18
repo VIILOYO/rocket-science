@@ -15,6 +15,8 @@ class ItemRepository extends BaseRepository
 
     public function getItems(): LengthAwarePaginator
     {
-        return $this->model->newQuery()->paginate(40);
+        return $this->model->newQuery()
+            ->with('options')
+            ->paginate(40);
     }
 }

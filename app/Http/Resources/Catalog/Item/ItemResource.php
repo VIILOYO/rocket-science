@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Catalog\Item;
 
+use App\Http\Resources\Catalog\Option\OptionResource;
 use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -18,7 +19,9 @@ class ItemResource extends JsonResource
             'title' => $this->title,
             'price' => $this->price,
             'amount' => $this->amount,
-            // ToDo Добавить свойства
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+            'options' => OptionResource::collection($this->options),
         ];
     }
 }
