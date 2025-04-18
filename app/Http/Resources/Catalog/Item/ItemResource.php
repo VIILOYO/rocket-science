@@ -14,7 +14,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class ItemResource extends JsonResource
 {
     /**
-     * @param Request $request
      * @return array<string, int|string|float|AnonymousResourceCollection>
      */
     public function toArray(Request $request): array

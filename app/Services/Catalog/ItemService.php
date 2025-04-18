@@ -10,7 +10,7 @@ class ItemService
 {
     public function __construct(
         private readonly ItemRepository $itemRepository
-    ){}
+    ) {}
 
     public function getItems(GetItemData $data): LengthAwarePaginator
     {

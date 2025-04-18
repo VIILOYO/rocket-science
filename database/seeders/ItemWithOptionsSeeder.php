@@ -22,6 +22,7 @@ class ItemWithOptionsSeeder extends Seeder
 
             $options = array_map(function (array $option) use ($dbItem) {
                 $option['item_id'] = $dbItem->id;
+
                 return $option;
             }, $item['options']);
             Option::query()->insert($options);

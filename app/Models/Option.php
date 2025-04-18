@@ -17,7 +17,7 @@ class Option extends Model
 
     protected $fillable = [
         'title',
-        'value'
+        'value',
     ];
 
     public function item(): BelongsTo

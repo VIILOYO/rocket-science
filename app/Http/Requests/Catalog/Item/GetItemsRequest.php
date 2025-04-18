@@ -15,7 +15,7 @@ class GetItemsRequest extends FormRequest
             'page' => 'sometimes|int|min:1',
             'per_page' => 'sometimes|int|min:1',
             'properties' => 'sometimes|array',
-            'properties.*' => 'required_with:options|array'
+            'properties.*' => 'required_with:options|array',
         ];
     }
 

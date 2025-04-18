@@ -23,7 +23,7 @@ class Item extends Model
     ];
 
     protected $casts = [
-        'price' => 'float'
+        'price' => 'float',
     ];
 
     public function options(): HasMany
