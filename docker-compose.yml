@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+    nginx:
+        image: nginx
+        container_name: nginx
+        ports: ["80:80", "443:443"]
+        volumes:
+            - ./docker/local/host:/etc/nginx/conf.d
+            - ./:/app
+        networks: [rocket]
+        depends_on: [php]
+
+    php:
+        build: ./docker/local/php82
+        container_name: php
+        volumes: ["./:/app"]
+        networks: [rocket]
+        depends_on: [postgres]
+        working_dir: /app
+
+    postgres:
+        image: postgres:14
+        container_name: postgres
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_DB: rocket
+            POSTGRES_USER: root
+            POSTGRES_PASSWORD: root
+        volumes: [db_data:/var/lib/postgresql/data]
+        networks: [rocket]
+
+volumes:
+    db_data:
+
+networks:
+    rocket:
+        driver: bridge
