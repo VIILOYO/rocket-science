@@ -9,7 +9,10 @@ class GetItemsRequest extends FormRequest
     public function rules(): array
     {
         return [
-
+            'page' => 'sometimes|int|min:1',
+            'per_page' => 'sometimes|int|min:1',
+            'properties' => 'sometimes|array',
+            'properties.*' => 'required_with:options|array'
         ];
     }
 

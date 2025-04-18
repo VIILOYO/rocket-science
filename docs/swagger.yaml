@@ -1,0 +1,132 @@
+openapi: 3.0.3
+info:
+  title: Rocket Science
+  version: 1.0.0
+servers:
+  -   url: 'http://localhost/api/'
+      description: Локальная среда
+
+tags:
+  -   name: Товар
+paths:
+  /catalog/items:
+    get:
+      summary: Список товаров с фильтром
+      tags:
+        - Товар
+      parameters:
+        - $ref: '#/components/parameters/per_page'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/properties'
+      responses:
+        '200':
+          description: Список товаров
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ItemPaginator"
+        '403':
+          description: Клиент уже существует
+components:
+  schemas:
+    ItemPaginator:
+      type: object
+      required:
+        - data
+        - meta
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemResource'
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
+    ItemResource:
+      type: object
+      required:
+        - id
+        - title
+        - price
+        - amount
+        - create_at
+        - updated_at
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        price:
+          type: number
+        amount:
+          type: integer
+        created_at:
+          type: string
+          example: 2025-04-18T18:46:50.000000Z
+        updated_at:
+          type: string
+          example: 2025-04-18T18:46:50.000000Z
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/OptionResource'
+    OptionResource:
+      type: object
+      required:
+        - title
+        - value
+      properties:
+        title:
+          type: string
+        value:
+          type: string
+    PaginationMeta:
+      type: object
+      description: Метаданные для ответов с пагинацией
+      required:
+        - per_page
+        - total
+        - current_page
+        - last_page
+        - from
+        - to
+      properties:
+        per_page:
+          type: integer
+        total:
+          type: integer
+        current_page:
+          type: integer
+        last_page:
+          type: integer
+        from:
+          type: integer
+        to:
+          type: integer
+  parameters:
+    per_page:
+      name: per_page
+      in: query
+      required: false
+      description: Количество записей на странице
+      schema:
+        type: integer
+        default: 40
+    page:
+      name: page
+      in: query
+      required: false
+      description: Номер страницы
+      schema:
+        type: integer
+        default: 1
+    properties:
+      name: properties
+      in: query
+      required: false
+      description: Фильтр по опциям товаров
+      schema:
+        type: array
+        items:
+          type: array
+          items:
+            type: string
