@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Catalog;
 
+use App\Domain\Dto\GetItemData;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Catalog\Item\GetItemsRequest;
 use App\Http\Resources\Catalog\Item\ItemResource;
@@ -17,8 +18,9 @@ class ItemController extends Controller
     public function list(GetItemsRequest $request): AnonymousResourceCollection
     {
         return ItemResource::collection(
-            // ToDo Добавить DTO
-            $this->itemService->getItems()
+            $this->itemService->getItems(
+                GetItemData::from($request)
+            )
         );
     }
 }

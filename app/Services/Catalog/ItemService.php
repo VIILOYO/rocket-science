@@ -2,7 +2,8 @@
 
 namespace App\Services\Catalog;
 
-use App\Services\Repositories\Catalog\ItemRepository;
+use App\Domain\Dto\GetItemData;
+use App\Repositories\Catalog\ItemRepository;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class ItemService
@@ -11,8 +12,8 @@ class ItemService
         private readonly ItemRepository $itemRepository
     ){}
 
-    public function getItems(): LengthAwarePaginator
+    public function getItems(GetItemData $data): LengthAwarePaginator
     {
-        return $this->itemRepository->getItems();
+        return $this->itemRepository->getItems($data);
     }
 }
