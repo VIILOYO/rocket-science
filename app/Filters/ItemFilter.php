@@ -7,6 +7,7 @@ use Illuminate\Database\Query\Builder as QBuilder;
 
 class ItemFilter extends Filter
 {
+    /** @var array<string, array{int, string}>|null  */
     public ?array $properties = null;
 
     public function properties(Builder|QBuilder $builder): Builder|QBuilder

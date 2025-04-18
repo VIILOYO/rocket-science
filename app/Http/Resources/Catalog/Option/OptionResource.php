@@ -11,6 +11,10 @@ use Illuminate\Http\Resources\Json\JsonResource;
  */
 class OptionResource extends JsonResource
 {
+    /**
+     * @param Request $request
+     * @return string[]
+     */
     public function toArray(Request $request): array
     {
         return [

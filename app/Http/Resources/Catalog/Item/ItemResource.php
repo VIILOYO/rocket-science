@@ -5,6 +5,7 @@ namespace App\Http\Resources\Catalog\Item;
 use App\Http\Resources\Catalog\Option\OptionResource;
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
@@ -12,6 +13,10 @@ use Illuminate\Http\Resources\Json\JsonResource;
  */
 class ItemResource extends JsonResource
 {
+    /**
+     * @param Request $request
+     * @return array<string, int|string|float|AnonymousResourceCollection>
+     */
     public function toArray(Request $request): array
     {
         return [

@@ -4,10 +4,14 @@ namespace App\Repositories;
 
 use App\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Eloquent\BaseRepository as PretusBaseRepository;
 
 abstract class BaseRepository extends PretusBaseRepository
 {
+    /** @var Model|Builder @phpstan-ignore-next-line */
+    protected $model;
+
     /**
      * @param  class-string  $filter
      * @param  array{}  $data
