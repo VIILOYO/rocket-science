@@ -25,6 +25,11 @@
   composer install
   php artisan key:generate
   ```
+- Запустить миграции и сиддер
+    ```
+    php artisan migrate
+    php artisan db:seed
+    ```
 - После редактирования кода перед коммитом запускать форматирование кода в контейнере php:
     ```
     composer pint
