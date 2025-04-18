@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +11,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+use App\Http\Controllers\Catalog\ItemController;
+use Illuminate\Support\Facades\Route;
+
+// Сейчас такая структура не нужна, но для настоящего проекта она будет нужна
+Route::group(['prefix' => 'catalog', 'as' => 'catalog.'], function () {
+    Route::group(['prefix' => 'items', 'as' => 'items.'], function () {
+        Route::get('', [ItemController::class, 'list'])->name('list');
+    });
 });
